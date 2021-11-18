@@ -27,7 +27,7 @@ namespace MovieLibrary.WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<int> AddMovie(Movie movie)
+        public ActionResult<int> AddMovie(NewMovieModel movie)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data!");
@@ -38,7 +38,7 @@ namespace MovieLibrary.WebApi.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdateMovie(Movie movie)
+        public ActionResult UpdateMovie(UpdateMovieModel movie)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data!");

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieLibrary.Core.Interfaces;
+using MovieLibrary.Core.Models.CategoryModel;
 using MovieLibrary.Data.Entities;
 
 namespace MovieLibrary.WebApi.Controllers
@@ -16,7 +17,7 @@ namespace MovieLibrary.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Category> GetCategory(int categoryId)
+        public ActionResult<CategoryDetailsModel> GetCategory(int categoryId)
         {
             var category = _categoryService.GetCategory(categoryId);
             if (category == null)
@@ -26,9 +27,9 @@ namespace MovieLibrary.WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<int> AddCategory(Category category)
+        public ActionResult<int> AddCategory(NewCategoryModel category)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || category.Name == "")
                 return BadRequest("Invalid data!");
 
             var categoryId = _categoryService.AddCategory(category);
@@ -37,7 +38,7 @@ namespace MovieLibrary.WebApi.Controllers
         }
 
         [HttpPut]
-        public ActionResult UpdateCategory(Category category)
+        public ActionResult UpdateCategory(UpdateCategoryModel category)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid data!");

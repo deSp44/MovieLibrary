@@ -25,14 +25,16 @@ namespace MovieLibrary.Core.Services
             return categoryModel;
         }
 
-        public int AddCategory(Category category)
+        public int AddCategory(NewCategoryModel category)
         {
-            return _categoryRepository.AddCategory(category);
+            var categoryModel = _mapper.Map<Category>(category);
+            return _categoryRepository.AddCategory(categoryModel);
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(UpdateCategoryModel category)
         {
-            _categoryRepository.UpdateCategory(category);
+            var categoryModel = _mapper.Map<Category>(category);
+            _categoryRepository.UpdateCategory(categoryModel);
         }
 
         public bool DeleteCategoryById(int categoryId)

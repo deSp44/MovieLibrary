@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLibrary.Data", "MovieL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLibrary.Core", "MovieLibrary.Core\MovieLibrary.Core.csproj", "{71F246B6-F57E-4CE1-98BB-490EF3213A96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLibrary.WebApi", "MovieLibrary.Api\MovieLibrary.WebApi.csproj", "{22F2CD20-DD7E-413D-AC88-4EADCC2E6544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieLibrary.Api", "MovieLibrary.Api\MovieLibrary.Api.csproj", "{22F2CD20-DD7E-413D-AC88-4EADCC2E6544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

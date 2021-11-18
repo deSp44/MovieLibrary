@@ -6,8 +6,8 @@ namespace MovieLibrary.Core.Interfaces
     public interface ICategoryService
     {
         CategoryDetailsModel GetCategory(int id);
-        int AddCategory(Category category);
-        void UpdateCategory(Category category);
+        int AddCategory(NewCategoryModel category);
+        void UpdateCategory(UpdateCategoryModel category);
         bool DeleteCategoryById(int categoryId);
     }
 }

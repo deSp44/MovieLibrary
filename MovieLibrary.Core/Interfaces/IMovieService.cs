@@ -7,8 +7,8 @@ namespace MovieLibrary.Core.Interfaces
     public interface IMovieService
     {
         MovieDetailsModel GetMovieById(int movieId);
-        int AddMovie(Movie movie);
-        void UpdateMovie(Movie movie);
+        int AddMovie(NewMovieModel movie);
+        void UpdateMovie(UpdateMovieModel movie);
         bool DeleteMovieById(int movieId);
 
         IList<MovieDetailsModel> GetFilteredMoviesByTitle(string movieTitle);

@@ -26,14 +26,16 @@ namespace MovieLibrary.Core.Services
             return movieModel;
         }
 
-        public int AddMovie(Movie movie)
+        public int AddMovie(NewMovieModel movie)
         {
-            return _movieRepository.AddMovie(movie);
+            var movieModel = _mapper.Map<Movie>(movie);
+            return _movieRepository.AddMovie(movieModel);
         }
 
-        public void UpdateMovie(Movie movie)
+        public void UpdateMovie(UpdateMovieModel movie)
         {
-            _movieRepository.UpdateMovie(movie);
+            var movieModel = _mapper.Map<Movie>(movie);
+            _movieRepository.UpdateMovie(movieModel);
         }
 
         public bool DeleteMovieById(int movieId)
@@ -46,16 +48,24 @@ namespace MovieLibrary.Core.Services
             var listOfMovies = _movieRepository.GetAllMovies();
             var listOfMoviesDetail = listOfMovies.Select(movie => _mapper.Map<MovieDetailsModel>(movie));
 
-            var moviesFiltered = listOfMoviesDetail.Select(x => x).Where(x => x.Title.ToUpper().Contains(movieTitle.ToUpper())).OrderByDescending(x => x.ImdbRating).ToList();
+            if (movieTitle != null)
+            {
+                var moviesFiltered = listOfMoviesDetail.Select(x => x).Where(x => x.Title.ToUpper().Contains(movieTitle.ToUpper())).OrderByDescending(x => x.ImdbRating).ToList();
 
-            return moviesFiltered;
+                return moviesFiltered;
+            }
+
+            var fullListOfMovies = listOfMoviesDetail.OrderByDescending(x => x.ImdbRating).ToList();
+            return fullListOfMovies;
         }
 
         public IList<MovieDetailsModel> GetFilteredMoviesByCategories(int[] categoriesId)
         {
             var listOfMovies = _movieRepository.GetAllMovies();
             var listOfMoviesDetail = listOfMovies.Select(movie => _mapper.Map<MovieDetailsModel>(movie));
+
             var moviesFiltered = (from categoryId in categoriesId from movie in listOfMoviesDetail from category in movie.Categories where category.Id == categoryId select movie).OrderByDescending(x => x.ImdbRating).ToList();
+
             return moviesFiltered;
         }
 
